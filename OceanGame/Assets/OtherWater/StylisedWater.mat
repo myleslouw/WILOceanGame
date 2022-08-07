@@ -7,15 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Red
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Name: StylisedWater
+  m_Shader: {fileID: -6465566751694194690, guid: 9d265b5048c9f0540a25a8d287d5bcf4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -77,6 +76,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_3d3d2395f1bc405baa46efcd3a304d11: 0.05
+    - Vector1_6f0508b99038436bb573c0a4e9e57261: 1
+    - Vector1_a5d5fc8a191a46d185c8cfda7925a2fa: 0.01
+    - Vector1_c8817e8abc7c4e60888ebfe72d1fa491: 1
+    - Vector1_d6aefa886eef459ca5b368f6e9c6025c: 10
+    - Vector1_fa4e18358bc644e3a319567cd563688e: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -96,7 +101,6 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _SampleGI: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -105,12 +109,14 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 0, b: 0, a: 1}
+    - Color_4f9f4f7d46434529bd17efc6c3f731a0: {r: 0, g: 0.721844, b: 0.9339623, a: 0.27058825}
+    - DeepWater: {r: 0, g: 0.3183799, b: 1, a: 0.5686275}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &6976670899815667442
+--- !u!114 &2516593428714657731
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

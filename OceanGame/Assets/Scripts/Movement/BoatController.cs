@@ -6,7 +6,8 @@ public class BoatController : MonoBehaviour
 {
     Rigidbody rb;
     public Transform Director;
-    private float force = 1;            //the stopping force in the water
+    private float speed = 1;            //the stopping force in the water       //speed for game, 1 for testing for some reason
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,23 +20,22 @@ public class BoatController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            print("input");
-            rb.AddForceAtPosition(Vector3.forward, Director.position, ForceMode.Force);
+            rb.AddForceAtPosition(Vector3.forward * speed, Director.position, ForceMode.Force);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            rb.AddForceAtPosition(Vector3.back, Director.position, ForceMode.Force);
+            rb.AddForceAtPosition(Vector3.back * speed, Director.position, ForceMode.Force);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            rb.AddForceAtPosition(Vector3.left, Director.position, ForceMode.Force);
+            rb.AddForceAtPosition(Vector3.left * speed, Director.position, ForceMode.Force);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            rb.AddForceAtPosition(Vector3.right, Director.position, ForceMode.Force);
+            rb.AddForceAtPosition(Vector3.right * speed, Director.position, ForceMode.Force);
         }
 
     }

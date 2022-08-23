@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public static int GlassCount, PlasticCount, GeneralWasteCount;
+    public int invGlassCount, invPlasticCount, invGeneralWasteCount;
 
     public static Inventory Instance
     {
@@ -14,53 +14,69 @@ public class Inventory : MonoBehaviour
 
     private static Inventory instance = null;
 
-    public static void ClearInventory()
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            DestroyImmediate(gameObject);
+        }
+    }
+    public void ClearInventory()
     {
         //clears amounts at the start
-        GlassCount = 0;
-        PlasticCount = 0;
-        GeneralWasteCount = 0;
+        invGlassCount = 0;
+        invPlasticCount = 0;
+        invGeneralWasteCount = 0;
     }
 
-    public static void AddToInventory(Pollutant pollutant)
+    public void AddToInventory(PollutantObject pollutant)
     {
+        //increase the amount in inventory 
         switch (pollutant.pollutantType)
         {
             case PollutantType.type.Glass:
-                GlassCount++;
+                invGlassCount++;
                 break;
             case PollutantType.type.Plastic:
-                PlasticCount++;
+                invPlasticCount++;
                 break;
             case PollutantType.type.GeneralWaste:
-                GeneralWasteCount++;
+                invGeneralWasteCount++;
                 break;
             default:
                 break;
         }
+
+        //triggers the event to update UI
+        EventManager.Instance.PostEventNotification(EventManager.EVENT_TYPE.POLLUTANT_PICKUP, this, pollutant);
     }
 
     //sets that type to 0 in the inventory and ssend xp to milestone
-    public static void RecycleType(Pollutant pollutant)
+    public void RecycleType(Pollutant pollutant)
     {
-        switch (pollutant.pollutantType)
+        switch (pollutant.pollutantObj.pollutantType)
         {
             case PollutantType.type.Glass:
                 print("Recycling Glass...");
-                GlassCount = 0;
-                MilestoneManager.Instance.AddXP(pollutant);
+                invGlassCount = 0;
+                MilestoneManager.Instance.AddXP(pollutant.pollutantObj);
                 break;
 
             case PollutantType.type.Plastic:
                 print("Recycling Plastic...");
-                PlasticCount = 0;
-                MilestoneManager.Instance.AddXP(pollutant);
+                invPlasticCount = 0;
+                MilestoneManager.Instance.AddXP(pollutant.pollutantObj);
                 break;
 
             case PollutantType.type.GeneralWaste:
                 print("Recycling General Waste...");
-                GeneralWasteCount = 0;
-                MilestoneManager.Instance.AddXP(pollutant);
+                invGeneralWasteCount = 0;
+                MilestoneManager.Instance.AddXP(pollutant.pollutantObj);
                 break;
 
             default:

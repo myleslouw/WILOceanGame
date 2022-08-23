@@ -17,7 +17,7 @@ public class MilestoneManager : MonoBehaviour
     private static MilestoneManager instance = null;
 
   
-    public void AddXP(Pollutant item)
+    public void AddXP(PollutantObject item)
     {
         currentXP += item.pollutantReward;      //get the amount in the inventory
 

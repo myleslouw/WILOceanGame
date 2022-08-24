@@ -7,8 +7,8 @@ public class EventManager : MonoBehaviour
     //possible events that will take place in the game
     public enum EVENT_TYPE
     {
-        GAME_START, GAME_END, GAME_PAUSE, POLLUTANT_PICKUP,
-        RECYCLE_POLLUTANT
+        GAME_START, GAME_END, GAME_PAUSE, POLLUTANT_PICKUP, PICKUP_UI,
+        RECYCLE_POLLUTANT, RECYCLE_UI
     }
 
     public static EventManager Instance
@@ -38,6 +38,13 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (instance == null)
+        {
+            print("null dude");
+        }
+    }
     //eventType = the event to listen for
     //listener = the objects to listen for the event
     //takes the listeners and puts the eventType on it

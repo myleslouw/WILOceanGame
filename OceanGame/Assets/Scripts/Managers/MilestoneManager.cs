@@ -17,9 +17,11 @@ public class MilestoneManager : MonoBehaviour
     private static MilestoneManager instance = null;
 
   
-    public void AddXP(PollutantObject item)
+    public void AddXP(EventManager.EVENT_TYPE eventType, Component sender, object Params = null)
     {
-        currentXP += item.pollutantReward;      //get the amount in the inventory
+        Pollutant pollutant = (Pollutant)Params;
+
+        currentXP += pollutant.pollutantObj.pollutantReward;
 
         //if the player has enough xp to level
         if(currentXP >= nextLevelXPRequirement)

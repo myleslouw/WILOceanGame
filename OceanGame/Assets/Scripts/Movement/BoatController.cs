@@ -6,7 +6,7 @@ public class BoatController : MonoBehaviour
 {
     Rigidbody rb;
     public Transform Director;
-    private float speed = 1;            //the stopping force in the water       //speed for game, 1 for testing for some reason
+    private float speed = 3;            //the stopping force in the water       //speed for game, 1 for testing for some reason
 
 
     // Start is called before the first frame update
@@ -16,8 +16,9 @@ public class BoatController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        //adding force to the rigidbody at position in the front of the gameobject to give it the right feel
         if (Input.GetKey(KeyCode.W))
         {
             rb.AddForceAtPosition(Vector3.forward * speed, Director.position, ForceMode.Force);

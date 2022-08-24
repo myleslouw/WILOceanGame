@@ -18,11 +18,22 @@ public class PlayerScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //checks collision with pollutant
         if (other.gameObject.GetComponent<Pollutant>())
         {
-            Inventory.Instance.AddToInventory(other.gameObject.GetComponent<Pollutant>().pollutantObj); 
-            print("collision");
+
+            //Posts the event to all listeners of the POLLUTANT_PICKUP event and sends the pollutant for listeners to use
+            EventManager.Instance.PostEventNotification(EventManager.EVENT_TYPE.POLLUTANT_PICKUP, this, other.gameObject.GetComponent<Pollutant>());
+
+            //Destroys obj
             Destroy(other.gameObject);
+        }
+
+        //checks collision with recycler
+        if (other.gameObject.GetComponent<PollutantRecycler>())
+        {
+            //if the player collides with a recycler, it will trigger the recycle event
+            EventManager.Instance.PostEventNotification(EventManager.EVENT_TYPE.RECYCLE_POLLUTANT, this, other.gameObject.GetComponent<PollutantRecycler>());
         }
     }
 }

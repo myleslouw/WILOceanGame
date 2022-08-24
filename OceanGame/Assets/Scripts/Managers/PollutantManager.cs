@@ -17,7 +17,7 @@ public class PollutantManager : MonoBehaviour
 
     void Start()
     {
-        positions = new Vector3[] { new Vector3(SpawnSpace/2, WATERHEIGHT, SpawnSpace/2), new Vector3(-SpawnSpace/2, WATERHEIGHT, -SpawnSpace/3), new Vector3(SpawnSpace/2, WATERHEIGHT, -SpawnSpace/2), new Vector3(-SpawnSpace/3, WATERHEIGHT, SpawnSpace/2) };
+        positions = new Vector3[] { new Vector3(1, WATERHEIGHT, 1), new Vector3(4, WATERHEIGHT, -4), new Vector3(-1, WATERHEIGHT, 4), new Vector3(-10, WATERHEIGHT, 7), new Vector3(SpawnSpace / 4, WATERHEIGHT, SpawnSpace / 4), new Vector3(SpawnSpace / 3, WATERHEIGHT, SpawnSpace / -3), new Vector3(SpawnSpace / -4, WATERHEIGHT, SpawnSpace / 4) };
     }
 
     private void Update()

@@ -2762,6 +2762,7 @@ GameObject:
   - component: {fileID: 1570401044}
   - component: {fileID: 1570401046}
   - component: {fileID: 1570401045}
+  - component: {fileID: 1570401048}
   m_Layer: 0
   m_Name: GAMEMANAGER
   m_TagString: Untagged
@@ -2824,9 +2825,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faed1e3449bffd74ab7988fcb31ec9cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glassCount: {fileID: 1722372161}
-  plasticCount: {fileID: 1083277271}
-  generalWasteCount: {fileID: 944679593}
+  glassCounter: {fileID: 1722372161}
+  plasticCounter: {fileID: 1083277271}
+  generalWasteCounter: {fileID: 944679593}
 --- !u!114 &1570401046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2839,9 +2840,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b2a50dcafc1e849a269cddb5e2c163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invGlassCount: 0
-  invPlasticCount: 0
-  invGeneralWasteCount: 0
 --- !u!114 &1570401047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2852,6 +2850,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2fc6b9f4f08ebb64799b890e4b1f3c76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1570401048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570401041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485b6a17729b2bf48a8d8cfd7dceeee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1608990616

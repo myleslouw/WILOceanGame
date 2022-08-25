@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    //the amount in the inv
-    public int invGlassCount, invPlasticCount, invGeneralWasteCount;
+    //key is the type and the value is the type amount
+    public Dictionary<PollutantType.type, int> PollutantInventory;
 
     public static Inventory Instance
     {
@@ -30,7 +30,9 @@ public class Inventory : MonoBehaviour
     }
     private void Start()
     {
-        ClearInventory();
+        //creates the inventory dictionary
+        CreateInventory();
+
         //creates the delegates and the methods to it
         EventManager.OnDelegateEvent AddPollutantDelegate = AddToInventory;
         EventManager.OnDelegateEvent RecyclePollutantDelegate = RecycleType;
@@ -38,68 +40,45 @@ public class Inventory : MonoBehaviour
         EventManager.Instance.AddListener(EventManager.EVENT_TYPE.POLLUTANT_PICKUP, AddPollutantDelegate);
         EventManager.Instance.AddListener(EventManager.EVENT_TYPE.RECYCLE_POLLUTANT, RecyclePollutantDelegate);
     }
-    public void ClearInventory()
+
+    private void CreateInventory()
     {
-        //clears amounts at the start
-        invGlassCount = 0;
-        invPlasticCount = 0;
-        invGeneralWasteCount = 0;
+        //create the inv dictionary
+        PollutantInventory = new Dictionary<PollutantType.type, int>();
+
+        //adds the types and starts them at 0
+        PollutantInventory.Add(PollutantType.type.Glass, 0);
+        PollutantInventory.Add(PollutantType.type.Plastic, 0);
+        PollutantInventory.Add(PollutantType.type.GeneralWaste, 0);
+
     }
 
-    public void AddToInventory(EventManager.EVENT_TYPE eventType, Component sender, object Params = null)
+    private void AddToInventory(EventManager.EVENT_TYPE eventType, Component sender, object Params = null)
     {
         //casts the obj recieved from the event to a pollutant and then increments the count in inv based on type
         Pollutant pickedUpPollutant = (Pollutant)Params;
 
-        print(pickedUpPollutant.ToString());
-
-        //increase the amount in inventory 
-        switch (pickedUpPollutant.pollutantObj.pollutantType)
-        {
-            case PollutantType.type.Glass:
-                invGlassCount++;
-                break;
-            case PollutantType.type.Plastic:
-                invPlasticCount++;
-                break;
-            case PollutantType.type.GeneralWaste:
-                invGeneralWasteCount++;
-                break;
-            default:
-                break;
-        }
+        //increments the value of the type in the dictionary
+        int count;
+        count = PollutantInventory[pickedUpPollutant.pollutantObj.pollutantType];
+        PollutantInventory[pickedUpPollutant.pollutantObj.pollutantType] = count + 1;
 
         //UI event becuase the UI would pudate before it was added to inv
         EventManager.Instance.PostEventNotification(EventManager.EVENT_TYPE.PICKUP_UI, this, pickedUpPollutant);
     }
 
-    public void RecycleType(EventManager.EVENT_TYPE eventType, Component sender, object Params = null)
+    private void RecycleType(EventManager.EVENT_TYPE eventType, Component sender, object Params = null)
     {
-        //gets the type and then sets the inventory count of that type to 0 and then calls UI event
+        //gets the type calls ADD xp event and then sets the inventory count of that type to 0
+        //gets the event obj data
         PollutantRecycler recycler = (PollutantRecycler)Params;
 
-        switch (recycler.recyclerType)
-        {
-            case PollutantType.type.Glass:
-                print("Recycling Glass...");
-                invGlassCount = 0;
-                break;
+        //ADD XP event
+        EventManager.Instance.PostEventNotification(EventManager.EVENT_TYPE.ADD_XP, this, recycler);
 
-            case PollutantType.type.Plastic:
-                print("Recycling Plastic...");
-                invPlasticCount = 0;
-                break;
+        //sets the types amount in inv to 0
+        PollutantInventory[recycler.recyclerType] = 0;
 
-            case PollutantType.type.GeneralWaste:
-                print("Recycling General Waste...");
-                invGeneralWasteCount = 0;
-                break;
-
-            default:
-                break;
-        }
-
-        //UI event
-        EventManager.Instance.PostEventNotification(EventManager.EVENT_TYPE.RECYCLE_UI, this, recycler);
     }
+
 }

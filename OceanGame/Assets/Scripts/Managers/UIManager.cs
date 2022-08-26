@@ -18,10 +18,10 @@ public class UIManager : MonoBehaviour
         //the listener for the pickup event
         EventManager.OnDelegateEvent IncrementDelegate = IncrementPollutantUI;
         EventManager.OnDelegateEvent ResetDelegate = ResetPollutantUI;
-        //EventManager.Instance.AddListener(EventManager.EVENT_TYPE.POLLUTANT_PICKUP, PickupPollutant);
+        EventManager.OnDelegateEvent LevelUpDelegate = LevelUpUI;
         EventManager.Instance.AddListener(EventManager.EVENT_TYPE.PICKUP_UI, IncrementDelegate);
         EventManager.Instance.AddListener(EventManager.EVENT_TYPE.RECYCLE_UI, ResetDelegate);
-
+        EventManager.Instance.AddListener(EventManager.EVENT_TYPE.LEVEL_UP, LevelUpDelegate);
     }
     private void CreateCounters()
     {
@@ -57,5 +57,10 @@ public class UIManager : MonoBehaviour
         //gets the UI components based on the type and then displays the types inventory count
 
         TypeCounters[polObjType].text = Inventory.Instance.PollutantInventory[polObjType].ToString();
+    }
+
+    private void LevelUpUI(EventManager.EVENT_TYPE eventType, Component sender, object Params = null)
+    {
+        //change the UI to show new level
     }
 }

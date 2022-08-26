@@ -8,7 +8,7 @@ public class EventManager : MonoBehaviour
     public enum EVENT_TYPE
     {
         GAME_START, GAME_END, GAME_PAUSE, POLLUTANT_PICKUP, PICKUP_UI,
-        RECYCLE_POLLUTANT, ADD_XP, RECYCLE_UI
+        RECYCLE_POLLUTANT, ADD_XP, RECYCLE_UI, LEVEL_UP
     }
 
     public static EventManager Instance
